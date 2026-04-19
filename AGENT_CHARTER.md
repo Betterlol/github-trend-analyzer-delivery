@@ -36,15 +36,15 @@ And **must** pass rule checks in:
 A final recommendation is invalid unless:
 - At least 3 GitHub signals are provided.
 - At least 2 external signals are provided.
-- At least 2 counter-evidence items are provided.
+- At least 2 counter-evidence items are provided (each with stable risk id like `R01`).
 - At least 2 unknowns are provided.
-- Next validation steps are actionable and measurable.
+- Next validation steps are actionable, measurable, and explicitly map to mitigated risk ids when relevant.
 
 ## Confidence Policy
 - Confidence range: `0.0` to `1.0`
 - Confidence > `0.80` requires:
   - At least 3 strong external signals, and
-  - No unresolved critical unknowns.
+  - No unresolved high-severity risks without mapped mitigation steps.
 - If evidence is weak, lower confidence and prioritize validation steps.
 
 ## Failure Handling

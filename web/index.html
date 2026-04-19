@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GitHub Trend Analyzer</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <main class="shell">
+      <header class="hero">
+        <p class="kicker">Opportunity Discovery</p>
+        <h1>GitHub Trend Analyzer</h1>
+        <p class="hero-copy">
+          Explore ranked repositories and evidence-backed opportunity theses from topic-driven GitHub data.
+        </p>
+      </header>
+
+      <section class="panel control-panel">
+        <form id="analyze-form" class="controls">
+          <label>
+            Topic
+            <input id="topic" name="topic" type="text" value="ai" minlength="2" maxlength="50" required />
+          </label>
+          <label>
+            Limit
+            <input id="limit" name="limit" type="number" min="1" max="20" value="6" />
+          </label>
+          <label class="toggle">
+            <input id="offline" name="offline" type="checkbox" />
+            <span>Offline Sample Mode</span>
+          </label>
+          <button type="submit" id="submit-btn">Analyze</button>
+        </form>
+        <div class="status-row">
+          <span id="run-meta">No run yet</span>
+          <span id="source-chip" class="chip">-</span>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <h2>Ranked Repositories</h2>
+          <div id="repo-list" class="repo-list"></div>
+        </article>
+        <article class="panel">
+          <h2>Opportunity Analyses</h2>
+          <div id="opportunity-list" class="opportunity-list"></div>
+        </article>
+      </section>
+
+      <section class="panel dashboard-panel">
+        <h2>System Snapshot</h2>
+        <div class="stats-strip">
+          <article class="stat-box">
+            <p class="stat-label">Repositories</p>
+            <p id="stat-repo-count" class="stat-value">0</p>
+          </article>
+          <article class="stat-box">
+            <p class="stat-label">Analyses</p>
+            <p id="stat-analysis-count" class="stat-value">0</p>
+          </article>
+          <article class="stat-box">
+            <p class="stat-label">Pipeline Runs</p>
+            <p id="stat-run-count" class="stat-value">0</p>
+          </article>
+        </div>
+        <div class="dashboard-grid">
+          <article>
+            <h3>Recent Runs</h3>
+            <div id="recent-runs" class="stack-list"></div>
+          </article>
+          <article>
+            <h3>Language Mix</h3>
+            <div id="language-mix" class="stack-list"></div>
+          </article>
+          <article>
+            <h3>Recent Analyses</h3>
+            <div id="recent-analyses" class="stack-list"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <template id="repo-template">
+      <a class="repo-card" target="_blank" rel="noreferrer noopener">
+        <div class="repo-head">
+          <strong class="repo-name"></strong>
+          <span class="repo-lang"></span>
+        </div>
+        <p class="repo-metrics"></p>
+        <div class="score-bars"></div>
+      </a>
+    </template>
+
+    <template id="opportunity-template">
+      <article class="op-card">
+        <p class="op-thesis"></p>
+        <p class="op-case"><strong>Bull:</strong> <span class="op-bull"></span></p>
+        <p class="op-case"><strong>Bear:</strong> <span class="op-bear"></span></p>
+        <p class="op-confidence"></p>
+      </article>
+    </template>
+
+    <template id="run-template">
+      <article class="tiny-card">
+        <p class="tiny-main"></p>
+        <p class="tiny-sub"></p>
+      </article>
+    </template>
+
+    <template id="lang-template">
+      <article class="tiny-card">
+        <p class="tiny-main"></p>
+        <div class="mini-track"><div class="mini-fill"></div></div>
+      </article>
+    </template>
+
+    <template id="analysis-template">
+      <article class="tiny-card">
+        <p class="tiny-main"></p>
+        <p class="tiny-sub"></p>
+      </article>
+    </template>
+
+    <script src="/assets/app.js" defer></script>
+  </body>
+</html>
