@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/opportunity_analysis.schema.json",
+  "title": "Opportunity Analysis Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "status",
+    "thesis",
+    "bull_case",
+    "bear_case",
+    "github_signals",
+    "external_signals",
+    "counter_evidence",
+    "unknowns",
+    "confidence",
+    "next_validation_steps"
+  ],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["ok", "needs_revision"]
+    },
+    "thesis": {
+      "type": "string",
+      "minLength": 30
+    },
+    "bull_case": {
+      "type": "string",
+      "minLength": 30
+    },
+    "bear_case": {
+      "type": "string",
+      "minLength": 30
+    },
+    "github_signals": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "value", "interpretation", "strength"],
+        "properties": {
+          "name": { "type": "string", "minLength": 2 },
+          "value": { "type": ["string", "number", "integer", "boolean"] },
+          "interpretation": { "type": "string", "minLength": 10 },
+          "strength": { "type": "string", "enum": ["weak", "medium", "strong"] }
+        }
+      }
+    },
+    "external_signals": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_type", "evidence", "relevance", "strength"],
+        "properties": {
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "market_demand",
+              "hiring_signal",
+              "community_discussion",
+              "industry_standard",
+              "policy_or_regulation",
+              "user_feedback",
+              "competitive_landscape",
+              "other"
+            ]
+          },
+          "evidence": { "type": "string", "minLength": 12 },
+          "relevance": { "type": "string", "minLength": 10 },
+          "strength": { "type": "string", "enum": ["weak", "medium", "strong"] }
+        }
+      }
+    },
+    "counter_evidence": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["risk", "why_it_matters", "severity"],
+        "properties": {
+          "risk": { "type": "string", "minLength": 10 },
+          "why_it_matters": { "type": "string", "minLength": 10 },
+          "severity": { "type": "string", "enum": ["low", "medium", "high"] }
+        }
+      }
+    },
+    "unknowns": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "string",
+        "minLength": 10
+      }
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "next_validation_steps": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["action", "success_metric", "owner", "timebox_days"],
+        "properties": {
+          "action": { "type": "string", "minLength": 12 },
+          "success_metric": { "type": "string", "minLength": 8 },
+          "owner": { "type": "string", "minLength": 2 },
+          "timebox_days": { "type": "integer", "minimum": 1, "maximum": 30 }
+        }
+      }
+    }
+  }
+}
