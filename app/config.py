@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     github_request_timeout_sec: int = 20
     github_max_pages: int = 2
     github_per_page: int = Field(default=50, ge=1, le=100)
-    database_url: str = "sqlite:///./data/trend_analyzer.db"
+    database_url: str = "sqlite:////tmp/trend_analyzer.db"
     llm_enabled: bool = True
     llm_api_key: str | None = Field(default=None, validation_alias=AliasChoices("LLM_API_KEY", "OPENAI_API_KEY"))
     llm_base_url: str = Field(default="https://api.openai.com/v1", validation_alias=AliasChoices("LLM_BASE_URL", "OPENAI_BASE_URL"))

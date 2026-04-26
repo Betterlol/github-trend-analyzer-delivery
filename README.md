@@ -47,7 +47,7 @@ pytest
 
 ## Environment Variables
 - `GITHUB_TOKEN`: optional, recommended for higher GitHub API quota.
-- `DATABASE_URL`: optional, defaults to `sqlite:///./data/trend_analyzer.db`.
+- `DATABASE_URL`: optional, defaults to `sqlite:////tmp/trend_analyzer.db` (Vercel-safe writable path).
 - `LLM_ENABLED`: default `true`. If `false`, insight generation uses deterministic fallback template.
 - `LLM_API_KEY` or `OPENAI_API_KEY`: enables LLM opportunity generation.
 - `LLM_BASE_URL` or `OPENAI_BASE_URL`: defaults to `https://api.openai.com/v1` (OpenAI-compatible endpoint).
